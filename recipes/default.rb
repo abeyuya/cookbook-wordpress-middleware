@@ -17,21 +17,24 @@ end
 template "set apache conf includer" do
   path "/etc/httpd/conf.d/virtualhost.conf"
   source "virtualhost.conf"
-  # owner "apache"
-  # group "apache"
+  owner "apache"
+  group "apache"
   mode 0600
+  notifies :reload, 'service[httpd]'
 end
 
 execute "mkdir /etc/httpd/conf.d/sites" do
   command "mkdir -p /etc/httpd/conf.d/sites"
+  owner "apache"
+  group "apache"
   action :run
 end
 
 template "set wordpress apache conf" do
   path "/etc/httpd/conf.d/sites/#{node["wordpress"]["project_name"]}.conf"
   source "project_name.conf.erb"
-  # owner "apache"
-  # group "apache"
+  owner "apache"
+  group "apache"
   mode 0600
   variables({
     :install_path => node["wordpress"]["install_path"],
@@ -41,6 +44,7 @@ end
 
 service "httpd" do
   action [ :enable, :start ]
+  supports :reload => true
 end
 
 
