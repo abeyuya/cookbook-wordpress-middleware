@@ -25,7 +25,7 @@ end
 
 execute "mkdir /etc/httpd/conf.d/sites" do
   command "mkdir -p /etc/httpd/conf.d/sites"
-  owner "apache"
+  user "apache"
   group "apache"
   action :run
 end
