@@ -31,14 +31,14 @@ execute "mkdir /etc/httpd/conf.d/sites" do
 end
 
 template "set wordpress apache conf" do
-  path "/etc/httpd/conf.d/sites/#{node["wordpress"]["project_name"]}.conf"
+  path "/etc/httpd/conf.d/sites/#{node["middleware"]["wordpress"]["project_name"]}.conf"
   source "project_name.conf.erb"
   owner "apache"
   group "apache"
   mode 0600
   variables({
-    :install_path => node["wordpress"]["install_path"],
-    :project_name => node["wordpress"]["project_name"],
+    :install_path => node["middleware"]["wordpress"]["install_path"],
+    :project_name => node["middleware"]["wordpress"]["project_name"],
   })
 end
 
