@@ -17,8 +17,6 @@ end
 template "set apache conf includer" do
   path "/etc/httpd/conf.d/virtualhost.conf"
   source "virtualhost.conf"
-  owner "apache"
-  group "apache"
   mode 0600
   notifies :reload, 'service[httpd]'
 end
@@ -31,8 +29,6 @@ end
 template "set wordpress apache conf" do
   path "/etc/httpd/conf.d/sites/#{node["middleware"]["wordpress"]["project_name"]}.conf"
   source "project_name.conf.erb"
-  owner "apache"
-  group "apache"
   mode 0600
   variables({
     :install_path => node["middleware"]["wordpress"]["install_path"],
