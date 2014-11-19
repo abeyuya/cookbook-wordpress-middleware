@@ -14,6 +14,12 @@ package "httpd" do
   action :install
 end
 
+template "set apache conf" do
+  path "/etc/my.conf"
+  source "my.conf"
+  mode 0600
+end
+
 template "set apache conf includer" do
   path "/etc/httpd/conf.d/virtualhost.conf"
   source "virtualhost.conf"
