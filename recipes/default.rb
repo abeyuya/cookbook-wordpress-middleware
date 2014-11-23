@@ -78,3 +78,14 @@ end
 package "sshpass" do
   action :install
 end
+
+#################
+# charset encode
+#################
+execute "localdef" do
+  user "root"
+  command "localedef -f UTF-8 -i ja_JP ja_JP.UTF-8"
+  action :run
+end
+
+
