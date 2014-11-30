@@ -72,13 +72,6 @@ end
   end
 end
 
-##########
-# sshpass for WordMove
-##########
-package "sshpass" do
-  action :install
-end
-
 #################
 # charset encode
 #################
